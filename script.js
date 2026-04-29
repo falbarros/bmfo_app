@@ -47,3 +47,11 @@ items.forEach(item => {
 menuBtn.onclick = () => {
   dropdownMenu.classList.toggle("hidden");
 };
+// abrir automaticamente o primeiro relatório ao carregar
+window.onload = () => {
+  const first = items[0];
+
+  frame.src = first.url;
+  viewer.classList.remove("hidden");
+  subtitle.classList.add("hidden");
+};
