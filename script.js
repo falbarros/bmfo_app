@@ -16,62 +16,34 @@ const items = [
   }
 ];
 
-const menu = document.getElementById("menu");
-const viewer = document.getElementById("viewer");
+const menuBtn = document.getElementById("menuBtn");
+const dropdownMenu = document.getElementById("dropdownMenu");
 const frame = document.getElementById("frame");
-const backBtn = document.getElementById("backBtn");
+const viewer = document.getElementById("viewer");
 const subtitle = document.getElementById("subtitle");
 
 items.forEach(item => {
   const el = document.createElement("div");
-  el.className = "pill";
+  el.className = "menu-item";
 
   el.innerHTML = `
-    <div class="left">
+    <div class="menu-left">
       <div class="icon">${item.icon}</div>
       <div class="title">${item.title}</div>
     </div>
     <div class="arrow">›</div>
   `;
 
-  el.onclick = () => abrirRelatorio(item.url);
+  el.onclick = () => {
+    frame.src = item.url;
+    viewer.classList.remove("hidden");
+    subtitle.classList.add("hidden");
+    dropdownMenu.classList.add("hidden");
+  };
 
-  menu.appendChild(el);
+  dropdownMenu.appendChild(el);
 });
 
-function abrirRelatorio(url) {
-  menu.style.display = "none";
-  subtitle.style.display = "none";
-  viewer.classList.remove("hidden");
-  frame.src = url;
-}
-
-function voltarInicio() {
-  viewer.classList.add("hidden");
-  menu.style.display = "block";
-  subtitle.style.display = "block";
-  frame.src = "";
-}
-
-backBtn.onclick = voltarInicio;
-
-// gesto de arrastar para voltar
-let startX = 0;
-let startY = 0;
-
-viewer.addEventListener("touchstart", function(event) {
-  startX = event.touches[0].clientX;
-  startY = event.touches[0].clientY;
-});
-
-viewer.addEventListener("touchend", function(event) {
-  const endX = event.changedTouches[0].clientX;
-  const endY = event.changedTouches[0].clientY;
-
-  const diffX = endX - startX;
-  const diffY = Math.abs(endY - startY);
-
-  if (diffX > 100 && diffY < 80) {
-    voltarInicio();
-  }
-});
+menuBtn.onclick = () => {
+  dropdownMenu.classList.toggle("hidden");
+};

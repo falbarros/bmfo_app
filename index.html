@@ -2,25 +2,26 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Relatórios</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <h1>Relatórios</h1>
-  <p id="subtitle">Escolha um relatório para visualizar.</p>
+  <header class="topbar">
+    <button id="menuBtn" class="menu-btn">☰</button>
+    <h1>Relatórios</h1>
+  </header>
 
-  <!-- MENU -->
-  <div class="container" id="menu"></div>
+  <nav id="dropdownMenu" class="dropdown hidden"></nav>
 
-  <!-- VISUALIZAÇÃO -->
-  <div id="viewer" class="hidden">
-    <button id="backBtn">← Voltar</button>
-    <iframe id="frame"></iframe>
-  </div>
+  <main>
+    <p id="subtitle">Escolha um relatório no menu acima.</p>
+
+    <div id="viewer" class="viewer hidden">
+      <iframe id="frame"></iframe>
+    </div>
+  </main>
 
   <script src="script.js"></script>
 </body>
