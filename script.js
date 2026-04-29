@@ -21,6 +21,7 @@ const dropdownMenu = document.getElementById("dropdownMenu");
 const frame = document.getElementById("frame");
 const viewer = document.getElementById("viewer");
 const subtitle = document.getElementById("subtitle");
+const pageTitle = document.getElementById("pageTitle");
 
 items.forEach(item => {
   const el = document.createElement("div");
@@ -35,10 +36,7 @@ items.forEach(item => {
   `;
 
   el.onclick = () => {
-    frame.src = item.url;
-    viewer.classList.remove("hidden");
-    subtitle.classList.add("hidden");
-    dropdownMenu.classList.add("hidden");
+    abrirRelatorio(item);
   };
 
   dropdownMenu.appendChild(el);
@@ -47,11 +45,22 @@ items.forEach(item => {
 menuBtn.onclick = () => {
   dropdownMenu.classList.toggle("hidden");
 };
+
+function abrirRelatorio(item) {
+  frame.src = item.url;
+
+  viewer.classList.remove("hidden");
+
+  if (subtitle) {
+    subtitle.classList.add("hidden");
+  }
+
+  dropdownMenu.classList.add("hidden");
+
+  pageTitle.textContent = `BMFO_v1 / ${item.title}`;
+}
+
 // abrir automaticamente o primeiro relatório ao carregar
 window.onload = () => {
-  const first = items[0];
-
-  frame.src = first.url;
-  viewer.classList.remove("hidden");
-  subtitle.classList.add("hidden");
+  abrirRelatorio(items[0]);
 };
