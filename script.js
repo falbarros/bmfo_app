@@ -20,8 +20,9 @@ const menuBtn = document.getElementById("menuBtn");
 const dropdownMenu = document.getElementById("dropdownMenu");
 const frame = document.getElementById("frame");
 const viewer = document.getElementById("viewer");
-const subtitle = document.getElementById("subtitle");
 const pageTitle = document.getElementById("pageTitle");
+
+let activeElement = null;
 
 items.forEach(item => {
   const el = document.createElement("div");
@@ -36,7 +37,7 @@ items.forEach(item => {
   `;
 
   el.onclick = () => {
-    abrirRelatorio(item);
+    abrirRelatorio(item, el);
   };
 
   dropdownMenu.appendChild(el);
@@ -46,21 +47,28 @@ menuBtn.onclick = () => {
   dropdownMenu.classList.toggle("hidden");
 };
 
-function abrirRelatorio(item) {
+function abrirRelatorio(item, el) {
   frame.src = item.url;
-
   viewer.classList.remove("hidden");
-
-  if (subtitle) {
-    subtitle.classList.add("hidden");
-  }
 
   dropdownMenu.classList.add("hidden");
 
   pageTitle.textContent = `BMFO_v1 / ${item.title}`;
+
+  // remover destaque anterior
+  if (activeElement) {
+    activeElement.classList.remove("active");
+  }
+
+  // aplicar destaque atual
+  if (el) {
+    el.classList.add("active");
+    activeElement = el;
+  }
 }
 
-// abrir automaticamente o primeiro relatório ao carregar
+// abrir automaticamente o primeiro relatório
 window.onload = () => {
-  abrirRelatorio(items[0]);
+  const firstItem = dropdownMenu.children[0];
+  abrirRelatorio(items[0], firstItem);
 };
