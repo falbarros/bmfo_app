@@ -23,6 +23,11 @@ const items = [
     title: "Fatura Black",
     icon: "📉",
     url: "https://datastudio.google.com/embed/reporting/5dc61052-2259-4063-9ce5-66ed6e2f9aa7/page/p_b14ijpxd3d"
+  },
+    {
+    title: "Peso por grupo",
+    icon: "📉",
+    url: "https://datastudio.google.com/embed/reporting/5dc61052-2259-4063-9ce5-66ed6e2f9aa7/page/p_oud3ve4d3d"
   }
 ];
 
