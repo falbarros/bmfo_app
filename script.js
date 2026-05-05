@@ -13,6 +13,16 @@ const items = [
     title: "Detalhe Grupos",
     icon: "📄",
     url: "https://datastudio.google.com/embed/reporting/5dc61052-2259-4063-9ce5-66ed6e2f9aa7/page/p_7qpsonb62d"
+  },
+  {
+    title: "Fatura Azul",
+    icon: "📈",
+    url: "https://datastudio.google.com/embed/reporting/5dc61052-2259-4063-9ce5-66ed6e2f9aa7/page/p_c09fsy2c3d"
+  },
+  {
+    title: "Fatura Black",
+    icon: "📉",
+    url: "https://datastudio.google.com/embed/reporting/5dc61052-2259-4063-9ce5-66ed6e2f9aa7/page/p_b14ijpxd3d"
   }
 ];
 
@@ -55,19 +65,16 @@ function abrirRelatorio(item, el) {
 
   pageTitle.textContent = `BMFO_v1 / ${item.title}`;
 
-  // remover destaque anterior
   if (activeElement) {
     activeElement.classList.remove("active");
   }
 
-  // aplicar destaque atual
   if (el) {
     el.classList.add("active");
     activeElement = el;
   }
 }
 
-// abrir automaticamente o primeiro relatório
 window.onload = () => {
   const firstItem = dropdownMenu.children[0];
   abrirRelatorio(items[0], firstItem);
